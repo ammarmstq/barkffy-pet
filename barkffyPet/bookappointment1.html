@@ -75,7 +75,24 @@
         </div>
         <p class="copyright">© 2025 Barkffy Pet Sdn Bhd. All rights reserved</p>
     </footer>
-    
+        <!-- Booking Confirmation Modal -->
+    <div id="bookingConfirmationModal" class="booking-modal-overlay" style="display:none;">
+        <div class="booking-modal-content">
+            <span id="bookingModalClose" class="booking-modal-close">&times;</span>
+            <h2>Booking Confirmed</h2>
+            <p class="booking-id-line">
+                Booking ID: <span id="bookingIdText"></span>
+            </p>
+            <div class="booking-modal-body">
+                <div class="booking-modal-qr">
+                    <img id="bookingQrImage" src="" alt="Booking QR Code">
+                </div>
+                <div class="booking-modal-details" id="bookingDetailsText">
+                    <!-- JS will fill this -->
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="booking.js"></script>
 </body>
 </html>

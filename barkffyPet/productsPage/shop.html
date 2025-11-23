@@ -27,6 +27,11 @@
       <button class="cart-btn">Bookings</button>
       <a href="signin.html" class="login-link">Sign In | Sign Up</a>
     </div>
+      <div class="cart-icon">
+      <img src="cart.png" id="openCart">
+      <span id="cartBadge" class="cart-badge">0</span>
+    </div>
+
   </header>
 
   <main class="shop-page">
@@ -112,6 +117,26 @@
       </div>
     </div>
   </div>
+
+  <!-- Cart Sidebar -->
+  <div id="cartSidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <span id="closeCart" class="close-cart">&times;</span>
+    </div>
+
+    <div id="cartItems" class="cart-items"></div>
+
+    <div class="cart-footer">
+      <p>Total: RM <span id="cartTotal">0.00</span></p>
+      <button id="checkoutBtn" class="checkout-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <div id="cartOverlay" class="cart-overlay"></div>
+
+  <div id="toast" class="toast">Item added</div>
+
   <script src="shop.js"></script>
 </body>
 </html>

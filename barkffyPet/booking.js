@@ -136,12 +136,15 @@ function showBookingForm(serviceId, serviceName, date, time, duration) {
     const formData = Object.fromEntries(new FormData(e.target).entries());
 
     const data = {
-      user_id: 2, // Can replace later with logged-in user ID
-      pet_id: null, // Or selected pet ID
+      user_id: 2,          // still using dummy for now
+      pet_id: null,
       service_id: serviceId,
       booking_date: date,
       booking_time: time,
-      notes: null
+      notes: null,
+      customer_name: `${formData.first_name} ${formData.last_name}`,
+      customer_email: formData.email,
+      customer_phone: formData.phone
     };
 
     const res = await fetch('submit_booking.php', {
@@ -151,6 +154,57 @@ function showBookingForm(serviceId, serviceName, date, time, duration) {
     });
 
     const result = await res.json();
-    alert(result.success || result.error);
+
+    if (result.error) {
+      alert(result.error);
+      return;
+    }
+
+    // Show popup with QR + details
+    showBookingConfirmationModal(result);
   });
+
+  function showBookingConfirmationModal(result) {
+  const modal       = document.getElementById('bookingConfirmationModal');
+  const idSpan      = document.getElementById('bookingIdText');
+  const qrImg       = document.getElementById('bookingQrImage');
+  const detailsDiv  = document.getElementById('bookingDetailsText');
+  const closeBtn    = document.getElementById('bookingModalClose');
+
+  idSpan.textContent = result.booking_id;
+
+  if (result.qr_path) {
+    qrImg.src = result.qr_path;
+    qrImg.alt = `QR for booking #${result.booking_id}`;
+  }
+
+  const name    = result.customer_name || '';
+  const date    = result.booking_date;
+  const time    = result.booking_time;
+  const service = result.service_name;
+  const duration= result.service_duration;
+  const price   = result.service_price;
+
+  detailsDiv.innerHTML = `
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Service:</strong> ${service}</p>
+    <p><strong>Date:</strong> ${date}</p>
+    <p><strong>Time:</strong> ${time}</p>
+    <p><strong>Duration:</strong> ${duration} mins</p>
+    <p><strong>Price:</strong> RM ${parseFloat(price).toFixed(2)}</p>
+  `;
+
+  modal.style.display = 'flex';
+
+  closeBtn.onclick = () => {
+    modal.style.display = 'none';
+  };
+
+  window.onclick = (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
+}
+
 }

@@ -1242,3 +1242,170 @@ footer p {
   justify-content: center; /* centers text vertically relative to image */
   max-width: 400px;
 }
+
+/* ===== Booking Confirmation Modal ===== */
+
+.booking-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;            /* JS switches this to flex */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.booking-modal-content {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 32px;
+  max-width: 700px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.booking-modal-close {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.booking-id-line {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.booking-modal-body {
+  display: flex;
+  gap: 24px;
+  align-items: center; /* Vertically center QR + details */
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.booking-modal-qr {
+  flex: 0 0 200px;
+  text-align: center;
+}
+
+.booking-modal-qr img {
+  max-width: 200px;
+  height: auto;
+}
+
+.booking-modal-details {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.booking-modal-details p {
+  margin: 4px 0;
+}
+
+/* shopping cart */
+/* --- Cart Sidebar --- */
+.cart-sidebar {
+  position: fixed;
+  right: -400px;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  background: white;
+  box-shadow: -3px 0 8px rgba(0,0,0,0.3);
+  padding: 20px;
+  transition: 0.4s;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-sidebar.open {
+  right: 0;
+}
+
+.cart-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1500;
+}
+
+.cart-overlay.show {
+  display: block;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding-right: 5px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.cart-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 10px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #4CAF50;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  z-index: 2000;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  bottom: 40px;
+}
+
+/* Cart badge */
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: red;
+  color: white;
+  padding: 2px 7px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+}
